@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Text Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #111;
+        font-family: "Pacifico", cursive;
+      }
+
+      .container {
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 3vw;
+        color: transparent;
+        word-wrap: break-word; /* Tự động ngắt dòng khi cần thiết */
+        white-space: normal; /* Cho phép chữ xuống dòng */
+      }
+
+      h2 span {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInOut 1s ease-in-out forwards;
+        color: #ff0000; /* Màu đỏ tình yêu */
+      }
+
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+          text-shadow: none;
+        }
+
+        50% {
+          opacity: 1;
+          transform: translateY(0);
+          color: #ff0000; /* Màu đỏ tình yêu */
+          text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000,
+            0 0 80px #ff0000, 0 0 120px #ff0000, 0 0 200px #ff0000;
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateY(-50px);
+          text-shadow: none;
+        }
+      }
+
+      /* Media Query cho các thiết bị nhỏ */
+      @media (max-width: 600px) {
+        h2 {
+          font-size: 8vw; /* Giảm kích thước chữ cho màn hình nhỏ */
+        }
+
+        h2 span {
+          display: inline-block; /* Giúp các chữ xuống dòng nếu cần */
+          margin-right: 5px; /* Thêm khoảng cách giữa các chữ */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="text"></h2>
+      <audio id="birthday-audio" autoplay loop>
+        <source src="song.mp3" type="audio/mpeg" />
+        Trình duyệt của bạn không hỗ trợ thẻ audio.
+      </audio>
+    </div>
+
+    <script>
+      const sentences = [
+        "Chúc mừng sinh nhật em yêu! 🎉",
+        "Mỗi ngày bên em là một ngày tuyệt vời, và hôm nay, anh chỉ muốn em biết rằng em là món quà quý giá nhất đối với anh.",
+        "Anh cảm thấy thật may mắn khi có em trong đời, và hy vọng chúng ta sẽ cùng nhau chia sẻ rất nhiều khoảnh khắc hạnh phúc nữa trong tương lai.",
+        "Chúc em luôn vui vẻ, mạnh khỏe và đạt được tất cả những điều em mơ ước. Anh yêu em rất nhiều ❤️",
+      ];
+
+      const textElement = document.getElementById("text");
+
+      let sentenceIndex = 0;
+
+      function displaySentence() {
+        const words = sentences[sentenceIndex].split(" ");
+        textElement.innerHTML = "";
+
+        words.forEach((word, i) => {
+          const span = document.createElement("span");
+          span.style.animationDelay = `${i * 0.3}s`; // 500ms giữa mỗi từ
+          span.textContent = word;
+          textElement.appendChild(span);
+        });
+
+        sentenceIndex++;
+        if (sentenceIndex < sentences.length) {
+          setTimeout(displaySentence, words.length * 500 + 200);
+        } else {
+          setTimeout(() => {
+            window.location.href = "happy.html";
+          }, words.length * 500 + 500); // Đảm bảo là sau khi tất cả từ đã được hiển thị
+        }
+      }
+
+      displaySentence();
+    </script>
+  </body>
+</html>

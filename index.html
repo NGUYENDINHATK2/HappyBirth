@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Button</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body styling */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Center the container */
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Neon Button Styles */
+      .neon-button {
+        font-size: 50px;
+        padding: 20px 40px;
+        color: white;
+        background-color: black;
+        border: 2px solid #ff0044; /* Đổi viền sang màu đỏ tình yêu */
+        border-radius: 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Neon Glowing Effect */
+      .neon-button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: linear-gradient(
+          45deg,
+          #ff0044,
+          #ff6677
+        ); /* Đổi gradient sang màu đỏ */
+        animation: glowing 1.5s infinite ease-in-out;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+        border-radius: 50%;
+      }
+
+      /* Button Animation */
+      .neon-button:hover {
+        color: #ff0044; /* Đổi màu chữ khi hover */
+        border-color: #ff0044; /* Đổi viền khi hover */
+        box-shadow: 0 0 20px #ff0044, 0 0 30px #ff0044, 0 0 40px #ff0044; /* Hiệu ứng phát sáng màu đỏ */
+      }
+
+      .neon-button:focus {
+        outline: none;
+      }
+
+      /* Glowing Animation */
+      @keyframes glowing {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.5;
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="./live.html">
+        <div class="neon-button">💖</div>
+      </a>
+    </div>
+  </body>
+</html>
